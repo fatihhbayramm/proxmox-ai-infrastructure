@@ -1,0 +1,47 @@
+# Cloudflare Tunnel Configuration
+# Replace with your actual tunnel credentials
+
+tunnel: your-tunnel-id
+credentials-file: /root/.cloudflared/your-tunnel-id.json
+
+ingress:
+  # Open WebUI (AI Chat Interface)
+  - hostname: ai.yourdomain.com
+    service: http://192.168.1.125:3000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      http2Origin: false
+
+  # n8n (Workflow Automation)
+  - hostname: n8n.yourdomain.com
+    service: http://192.168.1.125:5678
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+
+  # Ollama API (Direct access - optional)
+  - hostname: ollama.yourdomain.com
+    service: http://192.168.1.125:11434
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+
+  # Portainer (Docker Management - optional)
+  - hostname: portainer.yourdomain.com
+    service: https://192.168.1.125:9443
+    originRequest:
+      noTLSVerify: true
+
+  # Proxmox Web UI
+  - hostname: pve1.yourdomain.com
+    service: https://192.168.1.100:8006
+    originRequest:
+      noTLSVerify: true
+
+  # SSH Access (optional - for remote management)
+  - hostname: ssh.yourdomain.com
+    service: ssh://192.168.1.125:22
+
+  # Catch-all rule (must be last)
+  - service: http_status:404

@@ -1,0 +1,27 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.prod
+.env.production
+
+# Backup files
+*.backup
+backups/
+
+# Logs
+*.log
+logs/
+
+# Docker override files
+docker-compose.override.yml
+
+# Temporary files
+*.tmp
+*.temp
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
